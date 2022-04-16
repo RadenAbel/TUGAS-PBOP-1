@@ -246,11 +246,12 @@ def kembalikan_buku():
                 f.write(judul_buku[i]+","+pengarang[i]+","+str(jumlah_stok[i])+","+"Rp"+harga[i]+"\n")
 
 def caribuku():
-        cari  = input("Input nama buku yang ingin anda cari : ")
-        data  =  open("stock.txt")
-
-        for x in data :
-                if cari in x:
-                    print(x, "(Buku tersedia)")
+        with open('stock.txt') as temp_f:
+                data = temp_f.readlines()
+                book = input("masukkan judul yang ingin dicari :")
+        for x in data:
+                if book in x:
+                        return True,print(x,"\nBUKU TERSEDIA")
+        return False,print("MAAF BUKU YANG ANDA CARI TIDAK TERSEDIA")  
 
 menu_awal()
